@@ -8,7 +8,6 @@ interface Project {
   title: string;
   description: string;
   fullDescription: string;
-  image: string;
   driveLink: string;
   category: string;
 }
@@ -21,6 +20,12 @@ interface ProjectModalProps {
 
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   if (!project) return null;
+
+  // Convert Google Drive link to embeddable format
+  const getEmbedUrl = (driveLink: string) => {
+    const fileId = driveLink.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+    return fileId ? `https://drive.google.com/file/d/${fileId}/preview` : driveLink;
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -42,12 +47,12 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
         </DialogHeader>
         
         <div className="space-y-6">
-          {/* Project Image */}
-          <div className="w-full h-64 bg-gray-800 rounded-lg overflow-hidden">
-            <img 
-              src={project.image} 
-              alt={project.title}
-              className="w-full h-full object-cover"
+          {/* PDF Preview */}
+          <div className="w-full h-96 bg-gray-800 rounded-lg overflow-hidden">
+            <iframe 
+              src={getEmbedUrl(project.driveLink)}
+              className="w-full h-full border-0"
+              title={`PDF Preview of ${project.title}`}
             />
           </div>
           
@@ -59,7 +64,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
           </div>
           
           {/* Full Description */}
-          <div>
+          <div>  
             <h3 className="text-lg font-semibold mb-3 text-white">Project Overview</h3>
             <p className="text-gray-300 leading-relaxed">
               {project.fullDescription}

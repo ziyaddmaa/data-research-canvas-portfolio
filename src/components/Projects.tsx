@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import ProjectModal from './ProjectModal';
 
@@ -6,7 +7,6 @@ interface Project {
   title: string;
   description: string;
   fullDescription: string;
-  image: string;
   driveLink: string;
   category: string;
 }
@@ -21,7 +21,6 @@ const Projects = () => {
       title: 'Functional Cooperation Disorder: A Behavioral Analysis among University Students',
       description: 'Survey-based behavioral research analyzing cooperation patterns with comprehensive data visualization for Agricultural Extension Communication course.',
       fullDescription: 'As part of a group presentation for the Agricultural Extension Communication course, my team and I investigated a recurring issue we observed over the past two years in our university environment: a lack of effective collaboration among students, especially when placed in unfamiliar groups during practical sessions. We identified this issue as "Functional Cooperation Disorder." To better understand this phenomenon, we designed a printed survey inspired by the real-life experiences of our team members. The survey aimed to gather behavioral data from students, which we analyzed to classify participants into categories based on their cooperative difficulties. For each category, we proposed targeted development points and solutions. I was responsible for all visual content, including capturing and editing original background shoots used in the PowerPoint presentation. I also contributed to the data analysis and visualization, helping to present our findings clearly and engagingly to our audience.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
       driveLink: 'https://drive.google.com/file/d/1lLbowyWgW3KfeGralYMHSvfvWZlv0_Cp/view?usp=sharing',
       category: 'Behavioral Research'
     },
@@ -30,7 +29,6 @@ const Projects = () => {
       title: 'Microbiology - Bacterial Classification',
       description: 'Analysis of bacteria based on nutritional needs, temperature tolerance, and growth phases with comprehensive data visualization.',
       fullDescription: 'In my Bacterial Classification in Microbiology project, I analyzed different types of bacteria based on their nutritional needs, temperature tolerance, and growth phases. I applied data analysis techniques to compare bacterial groups by their sources of carbon, nitrogen, and energy. Using charts and graphs, I visualized the classification of bacteria—such as chemoautotrophs, photoautotrophs, and heterotrophs—making the distinctions more understandable. I also created visual comparisons of bacterial growth stages and temperature categories. Finally, I presented my findings in a clear and structured format, demonstrating my ability to combine analysis and presentations with effective data visualization.',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop',
       driveLink: 'https://drive.google.com/file/d/10KWn6iVjJfbcmNiW_IrVGz_zeRvpKfSB/view',
       category: 'Microbiology'
     },
@@ -39,7 +37,6 @@ const Projects = () => {
       title: 'Analyzing Reforestation Techniques and Forest Benefits through Data Visualization',
       description: 'Forestry project exploring reproduction methods in forest ecosystems with data analysis and visualization of reforestation techniques.',
       fullDescription: 'In my Forestry Science project, I explored natural, vegetative, and seed-based reproduction methods in forest ecosystems, analyzing their advantages and disadvantages. I used data analysis to evaluate each method\'s effectiveness in terms of economic value, environmental impact, and regeneration time. Through charts and graphs, I visually compared high forest methods like clear-cutting, seed-tree, and shelterwood systems. I also illustrated the benefits of forests—such as carbon absorption and oxygen production—using clear data visualizations. Finally, I delivered a well-organized presentation that showcased both theoretical content and applied analysis, reflecting my ability to communicate complex information effectively.',
-      image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=400&fit=crop',
       driveLink: 'https://drive.google.com/file/d/1Q74CBUEVjl21AglhbZHdb24FwJZhlYCL/view',
       category: 'Environmental Science'
     },
@@ -48,7 +45,6 @@ const Projects = () => {
       title: 'Soil and Water Science - Pedology Principles',
       description: 'Detailed analysis of soil-forming processes, diagnostic horizons, and global soil orders with comparative data visualization.',
       fullDescription: 'In my Soil and Water Science – Pedology project, I conducted a detailed analysis of various soil-forming processes, diagnostic horizons, and global soil orders. I applied data analysis techniques to compare different soil horizons such as oxic, spodic, and calcic, as well as surface and subsurface diagnostic features. Using charts and graphs, I visually represented soil distribution across regions, along with chemical and physical differences between soil types. I created comparative tables for soil orders (like Alfisols, Aridisols, and Mollisols), integrating both qualitative and quantitative data visualization. I presented my findings in a structured format to demonstrate my capability in analysis and scientific presentation.',
-      image: 'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?w=600&h=400&fit=crop',
       driveLink: 'https://drive.google.com/file/d/1h1yfG6wOSVcqU9SW7lxcWOSV3U6MsqiL/view',
       category: 'Soil Science'
     }
@@ -62,6 +58,12 @@ const Projects = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProject(null);
+  };
+
+  // Convert Google Drive link to embeddable format
+  const getEmbedUrl = (driveLink: string) => {
+    const fileId = driveLink.match(/\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+    return fileId ? `https://drive.google.com/file/d/${fileId}/preview` : driveLink;
   };
 
   return (
@@ -84,11 +86,11 @@ const Projects = () => {
               className="bg-card border border-gray-800 rounded-xl overflow-hidden hover:border-blue-gradient-end/50 transition-all duration-300 hover-glow group cursor-pointer transform hover:scale-105"
               onClick={() => openProjectModal(project)}
             >
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              <div className="h-48 overflow-hidden bg-gray-800">
+                <iframe 
+                  src={getEmbedUrl(project.driveLink)}
+                  className="w-full h-full border-0 pointer-events-none"
+                  title={`Preview of ${project.title}`}
                 />
               </div>
               
