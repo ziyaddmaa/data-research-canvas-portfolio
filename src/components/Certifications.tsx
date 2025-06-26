@@ -1,42 +1,34 @@
-
 import { ExternalLink, Award } from 'lucide-react';
 
 const Certifications = () => {
   const certifications = [
     {
-      title: 'IBM Data Science Tools',
-      issuer: 'IBM',
-      description: 'Comprehensive training in data science tools and methodologies',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop',
-      link: '#'
-    },
-    {
-      title: 'Accenture Forage Simulation',
-      issuer: 'Accenture',
-      description: 'Virtual experience program in consulting and analytics',
+      title: 'Accenture North America Data Analytics and Visualization Job Simulation',
+      issuer: 'Accenture via Forage',
+      description: 'Comprehensive virtual experience program in data analytics and visualization consulting',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop',
-      link: '#'
+      link: 'https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Accenture%20North%20America/hzmoNKtzvAzXsEqx8_Accenture%20North%20America_6Hc8JTuJSsvHRATFP_1725311376617_completion_certificate.pdf'
     },
     {
-      title: 'Tata Forage Simulation',
-      issuer: 'Tata',
-      description: 'Data visualization and insight generation simulation',
+      title: 'Tata Data Visualisation: Empowering Business with Effective Insights Job Simulation',
+      issuer: 'Tata Group via Forage',
+      description: 'Virtual experience program focused on data visualization and business insight generation',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop',
-      link: '#'
+      link: 'https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/Tata/MyXvBcppsW2FkNYCX_Tata%20Group_6Hc8JTuJSsvHRATFP_1725572138341_completion_certificate.pdf'
     },
     {
       title: 'Data Analytics for Project Management',
       issuer: 'Udemy',
-      description: 'Advanced analytics techniques for project optimization',
+      description: 'Advanced analytics techniques and methodologies for effective project management and optimization',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop',
-      link: '#'
+      link: 'https://www.udemy.com/certificate/UC-11d1c359-0c46-4d32-8403-533b081566f0/'
     },
     {
-      title: 'Feasibility Study & Project Evaluation',
-      issuer: 'Professional Institute',
-      description: 'Comprehensive training in project assessment methodologies',
+      title: 'IBM Data Science Tools',
+      issuer: 'IBM via Cognitive Class',
+      description: 'Comprehensive training in data science tools and methodologies using IBM technologies',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=200&fit=crop',
-      link: '#'
+      link: 'https://courses.cognitiveclass.ai/certificates/8e07e07a329e41399c981d99e17681fc'
     }
   ];
 
