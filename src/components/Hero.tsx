@@ -15,6 +15,18 @@ const Hero = () => {
       
       {/* Content */}
       <div className={`text-center z-10 px-4 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Profile Photo */}
+        <div className="mb-8 flex justify-center">
+          <div className="relative">
+            <img 
+              src="/lovable-uploads/dfb4d622-acff-4ce6-bcc1-9cdfdfd3d80b.png" 
+              alt="Zeyad Mohamed Ali" 
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-blue-gradient-end/30 shadow-2xl hover-glow transition-all duration-300"
+            />
+            <div className="absolute inset-0 rounded-full bg-blue-gradient opacity-20"></div>
+          </div>
+        </div>
+
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           Hi, I'm{' '}
           <span className="text-gradient">Zeyad Mohamed Ali</span>
