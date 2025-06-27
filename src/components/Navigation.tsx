@@ -43,11 +43,10 @@ const Navigation = () => {
   };
 
   const downloadCV = () => {
-    // This will be updated with the actual CV file path
-    const cvUrl = '/cv/Zeyad_Mohamed_Ali_CV.pdf';
+    // Create a link to download the CV
     const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'Zeyad_Mohamed_Ali_CV.pdf';
+    link.href = 'https://drive.google.com/uc?export=download&id=1234567890abcdef'; // Replace with your actual CV Google Drive file ID
+    link.download = 'Ziyad_MA_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -58,7 +57,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <span className="text-xl font-bold text-gradient">Zeyad Mohamed Ali</span>
+            <span className="text-xl font-bold text-gradient">Ziyad MA</span>
           </div>
           
           <div className="hidden md:block">

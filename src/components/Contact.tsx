@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -29,8 +30,22 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission - replace with actual form handler like Formspree or EmailJS
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // EmailJS configuration
+      const templateParams = {
+        from_name: formData.fullName,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'zeyadmohamedali6@gmail.com'
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        'service_portfolio', // You'll need to replace with your EmailJS service ID
+        'template_contact', // You'll need to replace with your EmailJS template ID
+        templateParams,
+        'your_public_key' // You'll need to replace with your EmailJS public key
+      );
       
       toast({
         title: "Message Sent!",
@@ -44,10 +59,17 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('EmailJS Error:', error);
+      
+      // Fallback to mailto link if EmailJS fails
+      const mailtoLink = `mailto:zeyadmohamedali6@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+        `From: ${formData.fullName} (${formData.email})\n\n${formData.message}`
+      )}`;
+      window.location.href = mailtoLink;
+      
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
+        title: "Opening Email Client",
+        description: "Your default email client will open to send the message.",
       });
     } finally {
       setIsSubmitting(false);
