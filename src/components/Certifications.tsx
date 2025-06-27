@@ -69,13 +69,8 @@ const Certifications = () => {
                       title={`Preview of ${cert.title}`}
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-600 relative">
-                      <img 
-                        src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                        alt="Certificate preview"
-                        className="w-full h-full object-cover opacity-60"
-                      />
-                      <Award className="w-16 h-16 text-white absolute" />
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-600">
+                      <Award className="w-16 h-16 text-white" />
                     </div>
                   )}
                 </div>
