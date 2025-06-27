@@ -45,7 +45,7 @@ const Navigation = () => {
   const downloadCV = () => {
     // Create a link to download the CV
     const link = document.createElement('a');
-    link.href = 'https://drive.google.com/uc?export=download&id=1234567890abcdef'; // Replace with your actual CV Google Drive file ID
+    link.href = 'https://drive.google.com/uc?export=download&id=1xFCsMGku89DnOu8vJcdUjV6PiVWwY8ZP';
     link.download = 'Ziyad_MA_CV.pdf';
     document.body.appendChild(link);
     link.click();
