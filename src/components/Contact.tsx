@@ -1,11 +1,10 @@
-
 import { useState } from 'react';
 import { Mail, Phone, Linkedin, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import emailjs from '@emailjs/browser';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,22 +29,17 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // EmailJS configuration
-      const templateParams = {
-        from_name: formData.fullName,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'zeyadmohamedali6@gmail.com'
-      };
+      console.log('Sending contact form data:', formData);
+      
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
 
-      // Send email using EmailJS
-      await emailjs.send(
-        'service_portfolio', // You'll need to replace with your EmailJS service ID
-        'template_contact', // You'll need to replace with your EmailJS template ID
-        templateParams,
-        'your_public_key' // You'll need to replace with your EmailJS public key
-      );
+      if (error) {
+        throw error;
+      }
+
+      console.log('Email sent successfully:', data);
       
       toast({
         title: "Message Sent!",
@@ -59,9 +53,9 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error('Error sending email:', error);
       
-      // Fallback to mailto link if EmailJS fails
+      // Fallback to mailto link if edge function fails
       const mailtoLink = `mailto:zeyadmohamedali6@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
         `From: ${formData.fullName} (${formData.email})\n\n${formData.message}`
       )}`;
